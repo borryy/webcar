@@ -46,6 +46,7 @@
 	}
 	.el-header .el-col-offset-1{
 		text-align: center;
+		cursor: pointer;
 	}
 	.el-dropdown-menu{
 		margin: 0!important;
