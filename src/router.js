@@ -1,27 +1,58 @@
 import Vue from "vue";
+// 引入vueRouter
 import VueRouter from "vue-router";
-
 // 引入组件
 import home from "./pages/home.vue";
-
-
-// 要告诉 vue 使用 vueRouter
+import index from "./pages/index.vue";
+import order from "./pages/order.vue";
+import consumer from "./pages/consumer.vue";
+// 告诉 vue 使用 vueRouter
 Vue.use(VueRouter);
-
+// 配置路由
 const routes = [
     {
-        path:"/home",
-        component: home
+        path:"/",
+        name: "主页",
+        component: home,
+        redirect: '/index',
+        children: [
+            {
+                path: "index",
+                name: "主页",
+                component: index,
+                meta: {
+			        title: '新概念检车-首页'
+			      }
+            },
+            {
+                path: "order",
+                name: "会员列表",
+                component: order,
+                meta: {
+			        title: '新概念检车-会员列表'
+			      }
+            },
+            {
+                path: "consumer",
+                name: "消费明细",
+                component: consumer,
+                meta: {
+			        title: '新概念检车-消费明细'
+			      }
+            }
+        ]
     },
-    
-    // 重定向
-    {
-        path: '/', 
-        redirect: '/home' 
-    }
+   
 ]
 
 var router =  new VueRouter({
     routes
+})
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
 })
 export default router;

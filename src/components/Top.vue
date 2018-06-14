@@ -14,7 +14,6 @@
 				        <el-dropdown-item>个人资料</el-dropdown-item>
 				        <el-dropdown-item>设置</el-dropdown-item>
 				        <el-dropdown-item>退出</el-dropdown-item>
-				        
 				      </el-dropdown-menu>
 				    </el-dropdown>
 				</div>

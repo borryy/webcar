@@ -13,7 +13,7 @@
 			     </el-menu> 
 		     </el-aside>
 		     <el-main>
-		     	<page></page>
+		     	<router-view></router-view>
 		     </el-main>
 			
 		</el-container>
@@ -21,48 +21,60 @@
 </template>
 
 <script>
-	import NavList from '../components/NavList'
+	
 	import Top from '../components/Top'
-	import page from '../components/page'
 	import NavMenu from '../components/NavMenu'
     export default {
         components:{
-    	    NavList,
     	    Top,
-    	    page,
     	    NavMenu
         },
         data() {  
 	      return {
 	      	navMenus:[
-	      		
-	      			{  
-                    "entity": {  
-                        "id": 2,  
-                        "parentMenuId": 1,  
+	      			{
+	      				"entity": {  
+                        "id": 0,  
+                        "parentMenuId": 0,  
                         "name": "menuManage",  
-                        "icon": "el-icon-edit",  
-                        "alias": "菜单管理",  
+                        "icon": "home",  
+                        "alias": "主页",  
                         "state": "ENABLE",  
                         "sort": 2,  
-                        "value": "/system/menu",  
+                        "value": "/index",  
                         "type": "LINK",  
-                        "discription": "用于菜单管理的菜单",  
+                        "discription": "主页",  
+                        "createUserId": 1  
+                    	},  
+                    	"childs": null
+	      			},
+	      			{  
+                    "entity": {  
+                        "id": 1,  
+                        "parentMenuId": 1,  
+                        "name": "menuManage",  
+                        "icon": "user-secret",  
+                        "alias": "会员管理",  
+                        "state": "ENABLE",  
+                        "sort": 2,  
+                        "value": "#",  
+                        "type": "LINK",  
+                        "discription": "会员管理",  
                         "createUserId": 1  
                     },  
                     "childs": [  
                 {  
                     "entity": {  
                         "id": 3,  
-                        "parentMenuId": 2,  
+                        "parentMenuId": 1,  
                         "name": "authManage",  
-                        "icon": "el-icon-loading",  
-                        "alias": "权限管理",  
+                        "icon": "angle-right",  
+                        "alias": "会员列表",  
                         "state": "ENABLE",  
                         "sort": 0,  
-                        "value": "/system/auth",  
+                        "value": "/order",  
                         "type": "LINK",  
-                        "discription": "用于权限管理的菜单",  
+                        "discription": "会员列表",  
                         "createUserId": 3 
                     },  
                     "childs": null  
@@ -70,15 +82,15 @@
                 {  
                     "entity": {  
                         "id": 4,  
-                        "parentMenuId": 2,  
+                        "parentMenuId": 1,  
                         "name": "roleManage",  
-                        "icon": "el-icon-bell",  
-                        "alias": "角色管理",  
+                        "icon": "angle-right",  
+                        "alias": "消费明细",  
                         "state": "ENABLE",  
                         "sort": 1,  
-                        "value": "/system/role",  
+                        "value": "/consumer",  
                         "type": "LINK",  
-                        "discription": "用于角色管理的菜单",  
+                        "discription": "消费明细",  
                         "createUserId": 1  
                     },  
                     "childs": null  
@@ -86,10 +98,10 @@
                 {  
                     "entity": {  
                         "id": 2,  
-                        "parentMenuId": 2,  
-                        "name": "menuManage",  
-                        "icon": "el-icon-edit",  
-                        "alias": "菜单管理",  
+                        "parentMenuId": 1,  
+                        "name": "asd",  
+                        "icon": "angle-right",  
+                        "alias": "积分明细",  
                         "state": "ENABLE",  
                         "sort": 2,  
                         "value": "/system/menu",  
@@ -102,10 +114,10 @@
                 {  
                     "entity": {  
                         "id": 5,  
-                        "parentMenuId": 2,  
+                        "parentMenuId": 1,  
                         "name": "groupManage",  
-                        "icon": "el-icon-mobile-phone\r\n",  
-                        "alias": "分组管理",  
+                        "icon": "angle-right",  
+                        "alias": "会员卡设置",  
                         "state": "ENABLE",  
                         "sort": 3,  
                         "value": "/system/group",  
@@ -120,10 +132,10 @@
                 {  
                     "entity": {  
                         "id": 6,  
-                        "parentMenuId": 1,  
+                        "parentMenuId": 0,  
                         "name": "group",  
-                        "icon": "el-icon-mobile-phone\r\n",  
-                        "alias": "分组管理1",  
+                        "icon": "car",  
+                        "alias": "检车机构管理",  
                         "state": "ENABLE",  
                         "sort": 4,  
                         "value": "/system/",  
@@ -136,7 +148,8 @@
 	      		
 	      	]
 	      }
-    },  
+    },
+    
     }
 </script>
 
