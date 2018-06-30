@@ -12,6 +12,8 @@ import 'vue-awesome/icons'
 import echarts from 'echarts'
 // 引入vue-awesome ico
 import Icon from 'vue-awesome/components/Icon'
+// 引入地址global
+import global from './components/global'//引用文件
 
 //全局注册
 Vue.use(ElementUI)
@@ -19,6 +21,8 @@ Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.component('icon', Icon)
 Vue.prototype.$echarts = echarts
+Vue.prototype.GLOBAL = global
+
 var routeList = [];
 router.beforeEach((to, from, next) => {
  var index = -1;

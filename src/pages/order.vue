@@ -23,6 +23,11 @@
 		    style="width: 100%">
 		    <el-table-column
 		      fixed
+		      prop="index"
+		      label="序号"
+		      width="50">
+		    </el-table-column>
+		    <el-table-column
 		      prop="date"
 		      label="日期"
 		      width="150">
@@ -94,55 +99,34 @@
 </style>
 <script>
 	import bread from '../components/bread'
-  export default {
-  	components:{
-  		bread
-  	},
-    methods: {
-      handleClick(row) {
-        console.log(row);
-      }
-    },
-
-    data() {
-      return {
-      	value1: '',
-      	value2: '',
-      	pickerOptions1: {
-	        disabledDate(time) {
-	            return time.getTime() > Date.now();
-        	}
-	    },
-        tableData: [{
-          date: '2016-05-03',
-          name: '王小y',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-02',
-          name: '王小x',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小z',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小a',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }]
-      }
-    }
-  }
+		export default {
+		  	components:{
+		  		bread
+		  	},
+		    methods: {
+		      handleClick(row) {
+		        console.log(row);
+		      }
+		    },
+		
+		    data() {
+		      return {
+		      	value1: '',
+		      	value2: '',
+		      	pickerOptions1: {
+			        disabledDate(time) {
+			            return time.getTime() > Date.now();
+		        	}
+			    },
+		        tableData: null
+		      }
+		    },
+		    created() {
+		    	this.$axios('http://localhost:8080/api/order').then(res =>{
+		    		this.tableData = res.data.data.data
+		    	}, res => {
+		    		console.log(res);
+		    	})
+		    },
+		}
 </script>

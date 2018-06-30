@@ -16,67 +16,7 @@
 		    <el-input  placeholder="请输入手机号"></el-input>
 		    <el-button icon="el-icon-search" type="primary" circle></el-button>
 	    </div>
-		<el-table
-		    :data="tableData"
-		    border
-		    size="lage"
-		    style="width: 100%">
-		    <el-table-column
-		      fixed
-		      prop="date"
-		      label="日期"
-		      width="150">
-		    </el-table-column>
-		    <el-table-column
-		      prop="name"
-		      label="姓名"
-		      width="120">
-		    </el-table-column>
-		    <el-table-column
-		      prop="province"
-		      label="省份"
-		      width="120">
-		    </el-table-column>
-		    <el-table-column
-		      prop="city"
-		      label="市区"
-		      width="120">
-		    </el-table-column>
-		    <el-table-column
-		      prop="address"
-		      label="地址"
-		      width="300">
-		    </el-table-column>
-		    <el-table-column
-		      prop="address"
-		      label="地址"
-		      width="300">
-		    </el-table-column>
-		    <el-table-column
-		      prop="address"
-		      label="地址"
-		      width="300">
-		    </el-table-column>
-		    <el-table-column
-		      prop="address"
-		      label="地址"
-		      width="300">
-		    </el-table-column>
-		    <el-table-column
-		      prop="zip"
-		      label="邮编"
-		      width="120">
-		    </el-table-column>
-		    <el-table-column
-		      label="操作"
-		      fixed="right"
-		      width="100">
-		      <template slot-scope="scope">
-		        <el-button @click="handleClick(scope.row)" type="text" >查看</el-button>
-		        <el-button type="text" >编辑</el-button>
-		      </template>
-		    </el-table-column>
-		</el-table>
+		<tablem :tableData="tableData" :tableKey="tableKey" :tableMake="tableMake"></tablem>
 	</div>
 </template>
 <style>
@@ -94,55 +34,35 @@
 </style>
 <script>
 	import bread from '../components/bread'
-  export default {
-  	components:{
-  		bread
-  	},
-    methods: {
-      handleClick(row) {
-        console.log(row);
-      }
-    },
-
-    data() {
-      return {
-      	value1: '',
-      	value2: '',
-      	pickerOptions1: {
-	        disabledDate(time) {
-	            return time.getTime() > Date.now();
-        	}
+	import tablem from '../components/tablem'
+	export default {
+		
+	  	components:{
+	  		bread,
+	  		tablem
+	  	},
+	    data() {
+	      return {
+	      	value1: '',
+	      	value2: '',
+	      	pickerOptions1: {
+		        disabledDate(time) {
+		            return time.getTime() > Date.now();
+	        	}
+		    },
+	        tableData: null,
+	        tableKey:null,
+	        tableMake:null
+	      }
 	    },
-        tableData: [{
-          date: '2016-05-03',
-          name: '王小y',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-02',
-          name: '王小x',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-04',
-          name: '王小z',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-01',
-          name: '王小a',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }]
-      }
-    }
-  }
+	    created() {
+	    	this.$axios(this.GLOBAL.serverSrc + this.GLOBAL.urlOrder).then(res =>{
+	    		this.tableData = res.data.data.data
+	    		this.tableKey = res.data.data.keys
+	    		this.tableMake = res.data.data.make
+	    	}, res => {
+	    		console.log(res);
+	    	})
+	    },
+	}
 </script>

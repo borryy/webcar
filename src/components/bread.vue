@@ -31,11 +31,6 @@
           this.realList = this.$route.meta.routeList;
         }
       },
-//    beforeRouteEnter(to, from, next) {
-//      next((vm) => {
-//        vm.realList = to.meta.routeList;
-//      });
-//    },
      watch:{
        $route:function(newV,oldV) {
          this.realList =newV.meta.routeList;

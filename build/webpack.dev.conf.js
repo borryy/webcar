@@ -9,13 +9,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const axios = require('axios')
+//模拟后台数据发送
 const express = require('express')
-const app = express()
-const apiRoutes = express.Router()
-app.use('/api', apiRoutes)
-var appData = require('../data.json')  
-var data = appData.data  
+const app = express()//请求server
+var appData = require('../data.json')//加载本地数据文件
+var data = appData.data//获取对应的本地数据
+var order = appData.order
+var apiRoutes = express.Router()
+app.use('/api', apiRoutes)//通过路由请求数据
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -30,11 +31,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   // these devServer options should be customized in /config/index.js
   devServer: {
   	before(app) {
-		  app.get('/data', (req, res) => {
+		  app.get('/api/data', (req, res) => {
 		    res.json({
-		    	data: data
-		      // 这里是你的json内容
-		    })
+		      errno: 0,
+		      data: data
+		    })//接口返回json数据，上面配置的数据seller就赋值给data请求后调用
+		  }),
+		  app.get('/api/order', (req, res) => {
+		    res.json({
+		      errno: 0,
+		      data: order
+		    })//接口返回json数据，上面配置的数据seller就赋值给data请求后调用
 		  })
 		},
     clientLogLevel: 'warning',

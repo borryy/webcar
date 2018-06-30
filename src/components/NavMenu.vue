@@ -2,7 +2,7 @@
   	<div class="navMenu">  
   
 	    <label v-for="navMenu in navMenus">  
-	    	<router-link :to="navMenu.entity.value"  tag="div">
+	    	<router-link :to="navMenu.entity.value" tag="div">
 			<el-menu-item v-if="navMenu.childs==null&&navMenu.entity&&navMenu.entity.state==='ENABLE'"  
 						  :key="navMenu.entity.id" :data="navMenu" :index="navMenu.entity.name">
 				<icon :name="navMenu.entity.icon"></icon>  
@@ -26,7 +26,6 @@
     export default {  
 	    name: 'NavMenu',
 	    props: ['navMenus'],
-	   
     }  
 </script>  
   

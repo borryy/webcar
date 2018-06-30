@@ -12,7 +12,6 @@ Vue.use(VueRouter);
 const routes = [
     {
         path:"/",
-        name: "主页",
         component: home,
         redirect: '/index',
         children: [
@@ -25,7 +24,7 @@ const routes = [
 			      }
             },
             {
-                path: "order",
+                path: "/index/order",
                 name: "会员列表",
                 component: order,
                 meta: {
@@ -33,7 +32,7 @@ const routes = [
 			      }
             },
             {
-                path: "consumer",
+                path: "/index/consumer",
                 name: "消费明细",
                 component: consumer,
                 meta: {
@@ -46,6 +45,7 @@ const routes = [
 ]
 
 var router =  new VueRouter({
+	mode:'history',
     routes
 })
 router.beforeEach((to, from, next) => {
