@@ -1,6 +1,5 @@
 <template>  
   	<div class="navMenu">  
-  
 	    <label v-for="navMenu in navMenus">  
 	    	<router-link :to="navMenu.entity.value" tag="div">
 			<el-menu-item v-if="navMenu.childs==null&&navMenu.entity&&navMenu.entity.state==='ENABLE'"  
@@ -18,7 +17,6 @@
 	        	<NavMenu :navMenus="navMenu.childs"></NavMenu>  
 	        </el-submenu>  
 	    </label>  
-  
   	</div>  
 </template>  
   
