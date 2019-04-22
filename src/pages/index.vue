@@ -4,7 +4,6 @@
 			<bread></bread>
 		</div>
 			
-		</main-top>
 		
 		<el-row>
 			<el-col :span="6">
